@@ -1,0 +1,19 @@
+@keyframes sliding {
+    0% {
+        height: 0;
+
+    } 100%{
+
+        height: 19vh;
+    }
+}
+
+@keyframes logInSliding {
+    0% {
+        top:-80vh;
+
+    }100%{
+
+        top:15%;
+    }
+}
