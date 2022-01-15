@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row  pastaAddRow">
+        <form>
+            <!--div bez id, ale oddzielony aby flex go nie łapał-->
+            <div>
+                <div class="col-12"><h2><b>Dodaj paste wario</b></h2></div>
+                <div class="col-12">
+                    <label for='Tytul'>Podaj Tytul Makaroniarzu</label><br>
+                    <input type="text" name="Tytul" id="inputTitle">
+                </div>
+                <div class="col-12">
+                    <label for='Opis'>Opis</label><br>
+                    <input type="text" name="Opis" id="pastaDescription">
+                </div>
+            </div>
+            <div class="col-12">
+                <label for='Opis'>Miejsce na paste</label><br>
+                <textarea name="Opis" id="pastaDescription"></textarea>
+            </div>
+            <hr>
+            <p>Posiadasz już napisaną wariat? wyslij worda</p>
+            <input type='file' name='importPasta' />
+        </form>
+    </div>
+</div>
