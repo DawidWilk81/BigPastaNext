@@ -4,7 +4,7 @@
 
 // główny kontener mający wszystkie divy
 #container{
-    background-color: #1d1919;
+    background-color: $backBg;
     @include bodyBuilder(100%, 450vh);
     position: relative;
 }

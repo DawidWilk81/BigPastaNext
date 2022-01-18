@@ -8,12 +8,8 @@
 }
 
 .row{
-    display: flex;
-    align-items: center;
+    @extend %flexCenter;
     flex-direction: column;
-    justify-content: center;
-
-
 }
 .form-control{
     width: 100%;

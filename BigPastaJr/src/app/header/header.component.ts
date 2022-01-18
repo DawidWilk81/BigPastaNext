@@ -2,6 +2,8 @@ import {  Component, OnInit} from '@angular/core';
 import { faTools, faSignInAlt, faEnvelopeOpen, faStar, faPenAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-header',
@@ -10,10 +12,16 @@ import { Router } from '@angular/router';
   providers: [UserService]
 })
 export class HeaderComponent implements OnInit{
+  po(token){
+    let tokens = JSON.parse(token);
+    let decoded = jwt_decode(tokens); 
+    console.log(decoded);
+  }
+
   user;
   logged = false;
   unlogged = true;
-  expand = false;
+  expand = true;
   loginCard = false;
   //icons
   faTools = faTools;
@@ -34,6 +42,32 @@ export class HeaderComponent implements OnInit{
       password: '',
     }
   }
+  getDecodedToken(token: string): any {
+    try{
+        return jwt_decode(JSON.parse(token));
+    }
+    catch(Error){
+        return null;
+    }
+  }
+  Login(){
+    this.userService.loginUser(this.user).subscribe(
+      response => {
+        // this.router.navigateByUrl('/home');
+        alert('graty wario! zalogowales sie')
+        this.unlogged = !this.unlogged;
+        this.logged = !this.logged;
+        this.loginCard = !this.loginCard;
+        document.cookie = response;
+
+        console.log(document.cookie);
+        this.po(response.token);
+      },error =>{
+        console.log('error', error);
+        alert('Podane dane są nieprawidłowe');
+        }
+    );
+  }
   expandMenu(){
     this.expand = !this.expand;
   }
@@ -53,25 +87,14 @@ export class HeaderComponent implements OnInit{
     }
  
   }
-  Login(){
-    this.userService.loginUser(this.user).subscribe(
-      response => {
-        this.router.navigateByUrl('/home');
-        alert('graty wario! zalogowales sie')
-        console.log(response);
-      },error =>{
-        console.log('error', error);
-        alert('Podane dane są nieprawidłowe');
-              }
-            );
-          }
+
     
   }
 
 
 window.onload=function(){
   const menuBtn = document.querySelector('.menu-btn');
-let menuOpen = false;
+  let menuOpen = false;
 menuBtn.addEventListener('click', () => {
   if(!menuOpen) {
     menuBtn.classList.add('open');
