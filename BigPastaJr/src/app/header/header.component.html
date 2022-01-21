@@ -13,14 +13,13 @@
         </form>
       <div class='hrlike'></div>
       <p>Nie masz konta? <span routerLink='register' (click)='hideLogIn()' class ='zarejestrujSpan'><br>zarejestruj się</span></p>
-
 </div>
 
 <nav id = 'header'>
     <ul class = 'navigation'>
         <li routerLink=''>Big Pasta</li>
         <li style="text-align: center; font-size: 30px;" routerLink="home/add">Dodaj pastę</li>
-        <li *ngIf = 'logged'>
+        <li *ngIf = 'token'>
             <div class="menu-btn"  #menuBurger (click) = 'expandMenu() '>
                 <div class="menu-btn__burger"></div>
               </div>

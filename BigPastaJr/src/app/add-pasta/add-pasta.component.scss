@@ -1,10 +1,11 @@
 @import '../../scss/_mixins.scss';
 @import '../../scss/_variables.scss';
+@import '../../scss/_placeholders.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap');
 
 .pastaAddRow{
     @include bodyBuilder(auto, auto);
-    background-color: #110f0f;
+
     padding:15px;
     margin-top:20px;
     border-radius: 10px;
@@ -17,10 +18,8 @@
         padding: 15px;
     }
     form{
-        display: flex;
+        @extend %flexCenter;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
         @include bodyBuilder(100%, 100%);
     }
 

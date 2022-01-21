@@ -10,7 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RegisterComponent } from './register/register.component';
 import { AddPastaComponent } from './add-pasta/add-pasta.component';
 const routes: Routes = [
-  { path: '', component: UnloggedComponent },
+  { path: '', component: ContentComponent },
   { path: 'home', component: ContentComponent },
   { path: 'account', component: AccountComponent },
   { path: 'favorites', component: FavoritesComponent },

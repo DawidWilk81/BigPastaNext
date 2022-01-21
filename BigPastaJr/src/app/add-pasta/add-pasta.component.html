@@ -6,16 +6,19 @@
                 <div class="col-12"><h2><b>Dodaj paste wario</b></h2></div>
                 <div class="col-12">
                     <label for='Tytul'>Podaj Tytul Makaroniarzu</label><br>
-                    <input type="text" name="Tytul" id="inputTitle">
+                    <input type="text" name="Tytul" id="inputTitle" [(ngModel)] = "pasta.Tytul">
                 </div>
                 <div class="col-12">
                     <label for='Opis'>Opis</label><br>
-                    <input type="text" name="Opis" id="pastaDescription">
+                    <input type="text" name="Opis" id="pastaDescription" [(ngModel)] = "pasta.Opis">
                 </div>
             </div>
             <div class="col-12">
-                <label for='Opis'>Miejsce na paste</label><br>
-                <textarea name="Opis" id="pastaDescription"></textarea>
+                <label for='Tresc'>Miejsce na paste</label><br>
+                <textarea name="Tresc" id="pastaDescription" [(ngModel)] = "pasta.Tresc"></textarea>
+            </div>
+            <div class="col-12">
+                <button class="btn-danger " (click)='addPasta()'>Wyslij Paste</button>
             </div>
             <hr>
             <p>Posiadasz już napisaną wariat? wyslij worda</p>
