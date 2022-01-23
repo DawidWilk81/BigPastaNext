@@ -1,4 +1,54 @@
+<div id="loginCard" *ngIf = 'loginCard' >
+    <p id = 'exit'(click) = 'hideLogIn()' >X</p>      
+    <form>
+        <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" name = 'login' class="form-control" id="login" placeholder="Enter Login" [(ngModel)] = "user.username">
+        </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name = 'password' class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)] = "user.password">
+        </div>
+        <button type="submit" class="btn btn-primary submit" (click) = "Login()">Submit</button>
+    </form>
+  <div class='hrlike'></div>
+  <p>Nie masz konta? <span routerLink='register' (click)='hideLogIn()' class ='zarejestrujSpan'><br>zarejestruj się</span></p>
+</div>
 
+<nav id = 'header'>
+<ul class = 'navigation'>
+    <li routerLink=''>Big Pasta</li>
+    <li style="text-align: center; font-size: 30px;" routerLink="home/add">Dodaj pastę</li>
+    <li *ngIf = 'token'>
+        <div class="menu-btn"  #menuBurger (click) = 'expandMenu() '>
+            <div class="menu-btn__burger"></div>
+          </div>
+          
+    </li>
+    <li  id="logIn" *ngIf = '!token' (click)='showLogIn()'>Zaloguj</li>
+</ul>
+</nav>
+<div id="navigationExpand" *ngIf = 'expand'>
+<div id="naviAvatar">
+    <div class="menuAvatar">
+        <fa-icon [icon]="faUser" class='usericon'></fa-icon>
+    </div>
+</div>
+<div id="naviList">
+    <ul class="naviButtons">
+        <li routerLink="/account"><fa-icon [icon]="faUser" class='Listicon'></fa-icon>Konto</li>
+        <li routerLink="/pastas"><fa-icon [icon]="faPenAlt" class='Listicon'></fa-icon>Pasty</li>
+        <li routerLink="/messages"><fa-icon [icon]="faEnvelopeOpen" class='Listicon'></fa-icon>Wiadomości</li>
+        <li routerLink="/favorites"><fa-icon [icon]="faStar" class='Listicon'></fa-icon>Ulubione</li>
+    </ul>
+    <div class="options" >
+        <ul class="optionButtons">
+            <li><fa-icon  [icon]="faTools" class='Optionicon' ></fa-icon >Ustawienia</li>
+            <li (click) = 'logOut()'><fa-icon [icon]="faSignIn" class='Optionicon'></fa-icon>Wyloguj</li>
+        </ul>
+    </div>
+</div>
+</div>
 <div id="topPasta">
     <app-carousel></app-carousel>
 </div>

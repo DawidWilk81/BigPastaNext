@@ -25,7 +25,7 @@
               </div>
               
         </li>
-        <li  id="logIn" *ngIf = 'unlogged' (click)='showLogIn()'>Zaloguj</li>
+        <li  id="logIn" *ngIf = '!token' (click)='showLogIn()'>Zaloguj</li>
     </ul>
 </nav>
 <div id="navigationExpand" *ngIf = 'expand'>
@@ -41,10 +41,10 @@
             <li routerLink="/messages"><fa-icon [icon]="faEnvelopeOpen" class='Listicon'></fa-icon>Wiadomości</li>
             <li routerLink="/favorites"><fa-icon [icon]="faStar" class='Listicon'></fa-icon>Ulubione</li>
         </ul>
-        <div class="options">
+        <div class="options" >
             <ul class="optionButtons">
-                <li><fa-icon [icon]="faTools" class='Optionicon'></fa-icon>Ustawienia</li>
-                <li><fa-icon [icon]="faSignIn" class='Optionicon'></fa-icon>Wyloguj</li>
+                <li><fa-icon  [icon]="faTools" class='Optionicon' ></fa-icon >Ustawienia</li>
+                <li (click) = 'logOut()'><fa-icon [icon]="faSignIn" class='Optionicon'></fa-icon>Wyloguj</li>
             </ul>
         </div>
     </div>

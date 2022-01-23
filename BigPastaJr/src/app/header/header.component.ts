@@ -3,14 +3,13 @@ import { faTools, faSignInAlt, faEnvelopeOpen, faStar, faPenAlt, faUser } from '
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
-import { CookieService } from 'ngx-cookie-service';
 import {HttpClient} from '@angular/common/http';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [UserService]
+  providers: [UserService, CookieService]
 })
 export class HeaderComponent implements OnInit{
    
@@ -28,11 +27,13 @@ export class HeaderComponent implements OnInit{
  
   // error messages received from the login attempt
   public errors: any = [];
- 
+  
+  //the refresh token
+  private refreshToken; 
   user;
   logged = false;
   unlogged = true;
-  expand = true;
+  expand = false;
   loginCard = false;
   //icons
   faTools = faTools;
@@ -41,12 +42,12 @@ export class HeaderComponent implements OnInit{
   faStar = faStar;
   faPenAlt = faPenAlt;
   faUser = faUser;
-
+  
   constructor(
     private userService: UserService, 
     private router:Router,
-    private cookie:CookieService,
     private http: HttpClient,
+    private cookie:CookieService,
               ) { }
 
   ngOnInit(): void {
@@ -55,20 +56,15 @@ export class HeaderComponent implements OnInit{
       password: '',
     }
   }
+
   Login(){
     this.userService.loginUser(this.user).subscribe(
       response => {
-        // this.router.navigateByUrl('/home');
-        alert('graty wario! zalogowales sie')
-        this.unlogged = !this.unlogged;
-        this.logged = !this.logged;
+        localStorage.setItem('jwtAccess', response.access);
+        localStorage.setItem('jwtRefresh', response.refresh);
+        localStorage.setItem('jwt', response);
         this.loginCard = !this.loginCard;
-        document.cookie = response;
-        this.cookie.set("refreshJWT", response.refresh);
-        localStorage.setItem("accessJWT", response.access);
-        console.log('refesh', this.cookie.get("refreshJWT"));
-        console.log("access", localStorage.getItem("accessJWT"));
-        this.token = this.cookie.get("refreshJWT");
+        alert('zalogowano pomyslnie!');
       },error =>{
         console.log('error', error);
         alert('Podane dane są nieprawidłowe');
@@ -76,12 +72,10 @@ export class HeaderComponent implements OnInit{
     );
   }
 
-   
-    public logout() {
-      this.token = null;
-      this.token_expires = null;
-      this.username = null;
-    }
+  logOut(){
+    localStorage.clear();
+    alert('Wylogowano wario');
+  }
    
 
   // NOT LOGIN FUNCTIONS //

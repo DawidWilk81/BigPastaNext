@@ -43,7 +43,7 @@ import { CookieService } from 'ngx-cookie-service';
     NgbModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
